@@ -1,0 +1,452 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "MultiAccessEdgeComputeManagementClient",
+      "description": "The resources in this swagger specification will be used to manage the virtual network functions deployed in a muti-access edge compute vnf",
+      "version": "2019-10-01-preview"
+    },
+    "host": "management.azure.com",
+    "schemes": [
+      "https"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "security": [
+      {
+        "azure_auth": [
+          "user_impersonation"
+        ]
+      }
+    ],
+    "securityDefinitions": {
+      "azure_auth": {
+        "type": "oauth2",
+        "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+        "flow": "implicit",
+        "description": "Azure Active Directory OAuth2 Flow.",
+        "scopes": {
+          "user_impersonation": "impersonate your user account"
+        }
+      }
+    },
+    "paths": {
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MultiAccessEdgeCompute/virtualNetworkFunctions/{vnfName}": {
+        "delete": {
+          "tags": [
+            "VirtualNetworkFunction"
+          ],
+          "operationId": "VirtualNetworkFunction_Delete",
+          "description": "Deletes the specified multi acces edge compute vnf.",
+          "parameters": [
+            {
+              "name": "resourceGroupName",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the resource group."
+            },
+            {
+              "name": "vnfName",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the vnf."
+            },
+            {
+              "$ref": "#/parameters/ApiVersionParameter"
+            },
+            {
+              "$ref": "#/parameters/SubscriptionIdParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Delete successful."
+            },
+            "202": {
+              "description": "Accepted. Sets 'Deleting' provisioningState until the operation completes. Returns an operation URI that can be queried to find the current state of the operation."
+            },
+            "204": {
+              "description": "Request successful. Resource does not exist."
+            }
+          },
+          "x-ms-examples": {
+            "Delete Multi Access Edge Compute Node resource": {
+              "$ref": "./examples/VirtualNetworkFunctionDelete.json"
+            }
+          },
+          "x-ms-long-running-operation": true,
+          "x-ms-long-running-operation-options": {
+            "final-state-via": "location"
+          }
+        },
+        "get": {
+          "tags": [
+            "VirtualNetworkFunction"
+          ],
+          "operationId": "VirtualNetworkFunctions_Get",
+          "description": "Gets information about the specified MultiAccessEdgeCompute vnf.",
+          "parameters": [
+            {
+              "name": "resourceGroupName",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the resource group."
+            },
+            {
+              "name": "vnfName",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of MEC vnf."
+            },
+            {
+              "$ref": "#/parameters/ApiVersionParameter"
+            },
+            {
+              "$ref": "#/parameters/SubscriptionIdParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Request successful. The operation returns the resulting MEC vnf resource.",
+              "schema": {
+                "$ref": "#/definitions/VirtualNetworkFunction"
+              }
+            }
+          },
+          "x-ms-examples": {
+            "Get Multi access edge compute vnf": {
+              "$ref": "./examples/VirtualNetworkFunction.json"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "VirtualNetworkFunction"
+          ],
+          "operationId": "VirtualNetworkFunction_CreateOrUpdate",
+          "description": "Creates or updates a VirtualNetworkFunction.",
+          "parameters": [
+            {
+              "name": "resourceGroupName",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the resource group."
+            },
+            {
+              "name": "vnfName",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the MEC Node."
+            },
+            {
+              "name": "parameters",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/VirtualNetworkFunction"
+              },
+              "description": "Parameters supplied to the create or update multiaccessedgecomputevnf operation."
+            },
+            {
+              "$ref": "#/parameters/ApiVersionParameter"
+            },
+            {
+              "$ref": "#/parameters/SubscriptionIdParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Update successful. The operation returns the resulting Multiaccessedgecompute vnf resource.",
+              "schema": {
+                "$ref": "#/definitions/VirtualNetworkFunction"
+              }
+            },
+            "201": {
+              "description": "Create successful. The operation returns the resulting Multiaccessedgecompute vnf resource.",
+              "schema": {
+                "$ref": "#/definitions/VirtualNetworkFunction"
+              }
+            }
+          },
+          "x-ms-examples": {
+            "Create Multi access edge compute vnf": {
+              "$ref": "./examples/VirtualNetworkFunction.json"
+            }
+          },
+          "x-ms-long-running-operation": true,
+          "x-ms-long-running-operation-options": {
+            "final-state-via": "azure-async-operation"
+          }
+        },
+        "patch": {
+          "tags": [
+            "VirtualNetworkFunction"
+          ],
+          "operationId": "VirtualNetworkFunction_UpdateTags",
+          "description": "Updates a VirtualNetworkFunction update tags.",
+          "parameters": [
+            {
+              "name": "resourceGroupName",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the resource group."
+            },
+            {
+              "name": "vnfName",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the multiaccessegdecompute vnf."
+            },
+            {
+              "name": "vnfParameters",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/TagsObject"
+              },
+              "description": "Parameters supplied to update VirtualNetworkFunction tags."
+            },
+            {
+              "$ref": "#/parameters/ApiVersionParameter"
+            },
+            {
+              "$ref": "#/parameters/SubscriptionIdParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Update successful. The operation returns the resulting Multiaccess edge compute vnf resource.",
+              "schema": {
+                "$ref": "#/definitions/VirtualNetworkFunction"
+              }
+            }
+          },
+          "x-ms-examples": {
+            "Update Multiaccess edge compute vnf tags": {
+              "$ref": "./examples/VirtualNetworkFunctionTags.json"
+            }
+          },
+          "x-ms-long-running-operation": true
+        }
+      },
+      "/subscriptions/{subscriptionId}/providers/Microsoft.MultiAccessEdgeCompute/virtualNetworkFunctions": {
+        "get": {
+          "tags": [
+            "VirtualNetworkFunctions"
+          ],
+          "operationId": "VirtualNetworkFunctions_ListAll",
+          "description": "Gets all the MultiAccessEdgeCompute vnfs in a subscription.",
+          "parameters": [
+            {
+              "$ref": "#/parameters/ApiVersionParameter"
+            },
+            {
+              "$ref": "#/parameters/SubscriptionIdParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Request successful. The operation returns a list of Multi access edge compute vnf resources.",
+              "schema": {
+                "$ref": "#/definitions/VirtualNetworkFunctionListResult"
+              }
+            }
+          },
+          "x-ms-examples": {
+            "List all Multi access edge compute vnfs": {
+              "$ref": "./examples/VirtualNetworkFunctionListAll.json"
+            }
+          },
+          "x-ms-pageable": {
+            "nextLinkName": "nextLink"
+          }
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MultiAccessEdgeCompute/virtualNetworkFunctions": {
+        "get": {
+          "tags": [
+            "VirtualNetworkFunctions"
+          ],
+          "operationId": "VirtualNetworkFunctions_ListByResourceGroup",
+          "description": "Gets all the VirtualNetworkFunctions in a subscription.",
+          "parameters": [
+            {
+              "name": "resourceGroupName",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "The name of the resource group."
+            },
+            {
+              "$ref": "#/parameters/ApiVersionParameter"
+            },
+            {
+              "$ref": "#/parameters/SubscriptionIdParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Request successful. The operation returns a list of Multi access edge compute vnf resources.",
+              "schema": {
+                "$ref": "#/definitions/VirtualNetworkFunctionListResult"
+              }
+            }
+          },
+          "x-ms-examples": {
+            "List Multiaccessedgecompute vnfs in resource group": {
+              "$ref": "./examples/VirtualNetworkFunctionList.json"
+            }
+          },
+          "x-ms-pageable": {
+            "nextLinkName": "nextLink"
+          }
+        }
+      }
+    },
+    "definitions": {
+      "VirtualNetworkFunction": {
+        "properties": {
+          "properties": {
+            "x-ms-client-flatten": true,
+            "$ref": "#/definitions/VirtualNetworkFunctionPropertiesFormat",
+            "description": "Multi access edge compute vnf Properties."
+          },
+          "etag": {
+            "type": "string",
+            "description": "A unique read-only string that changes whenever the resource is updated."
+          }
+        },
+        "allOf": [
+          {
+            "$ref": "#/definitions/Resource"
+          }
+        ],
+        "description": "Multiaccessedgecompute vnf  resource."
+      },
+      "VirtualNetworkFunctionPropertiesFormat": {
+        "description": "Multiaccessedgecomputevnf properties.",
+        "properties": {
+          "resourceGuid": {
+            "type": "string",
+            "readOnly": true,
+            "description": "The resource GUID property of the Multiaccessedgecomputevnf resource."
+          },
+          "provisioningState": {
+            "readOnly": true,
+            "$ref": "#/definitions/ProvisioningState",
+            "description": "The provisioning state of the Multiaccessedgecompute vnf resource."
+          },
+          "databoxEdgeNode": {
+            "type": "string",
+            "description": "The reference to the databox edge device"
+          },
+          "monitoringWorkSpace": {
+            "type": "string",
+            "readOnly": true,
+            "description": "The monitoring work space of the customer"
+          }
+        }
+      },
+      "VirtualNetworkFunctionListResult": {
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/VirtualNetworkFunction"
+            },
+            "description": "A list of VirtualNetworkFunctions in a resource group."
+          },
+          "nextLink": {
+            "type": "string",
+            "description": "The URL to get the next set of results."
+          }
+        },
+        "description": "Response for VirtualNetworkFunctions API service call."
+      },
+      "Resource": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Resource ID."
+          },
+          "name": {
+            "readOnly": true,
+            "type": "string",
+            "description": "Resource name."
+          },
+          "type": {
+            "readOnly": true,
+            "type": "string",
+            "description": "Resource type."
+          },
+          "location": {
+            "type": "string",
+            "description": "Resource location."
+          },
+          "tags": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Resource tags."
+          }
+        },
+        "description": "Common resource representation.",
+        "x-ms-azure-resource": true
+      },
+      "ProvisioningState": {
+        "type": "string",
+        "readOnly": true,
+        "description": "The current provisioning state.",
+        "enum": [
+          "Succeeded",
+          "Updating",
+          "Deleting",
+          "Failed"
+        ],
+        "x-ms-enum": {
+          "name": "ProvisioningState",
+          "modelAsString": true
+        }
+      },
+      "TagsObject": {
+        "properties": {
+          "tags": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Resource tags."
+          }
+        },
+        "description": "Tags object for patch operations."
+      }
+    },
+    "parameters": {
+      "SubscriptionIdParameter": {
+        "name": "subscriptionId",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "description": "The subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+      },
+      "ApiVersionParameter": {
+        "name": "api-version",
+        "in": "query",
+        "required": true,
+        "type": "string",
+        "description": "Client API version."
+      }
+    }
+   }
